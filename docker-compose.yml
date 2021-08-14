@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+  mysql1:
+    image: mysql:8.0
+    container_name: masql8
+    ports:
+      - "3306:3306"
+    #    jdbc:mysql://localhost:3306/chat2
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: chat2
+    volumes:
+      - "/home/mysql1:/var/lib/mysql"
+
+  back1:
+    image: 'back1'
+    container_name: back1
+    build:
+      context: 10060Back1JavaSpring
+      dockerfile: Dockerfile
+    environment:
+      - PORT=8080
+      - MYSQL_HOST=mysql1
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql1
+    volumes:
+      - ./:/app
