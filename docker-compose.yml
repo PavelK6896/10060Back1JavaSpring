@@ -13,6 +13,14 @@ services:
     volumes:
       - "/home/mysql1:/var/lib/mysql"
 
+  redis1:
+    image: "redis:alpine3.14"
+    container_name: redis1
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
   back1:
     image: 'back1'
     container_name: back1
@@ -22,9 +30,13 @@ services:
     environment:
       - PORT=8080
       - MYSQL_HOST=mysql1
+      - REDIS_HOST=redis1
     ports:
       - "8080:8080"
     depends_on:
       - mysql1
     volumes:
       - ./:/app
+
+volumes:
+  redis_data:
