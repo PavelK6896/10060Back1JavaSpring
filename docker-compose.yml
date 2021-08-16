@@ -21,6 +21,14 @@ services:
     volumes:
       - redis_data:/data
 
+  cassandra1:
+    image: "cassandra:3.11"
+    container_name: cassandra1
+    ports:
+      - "9042:9042"
+    volumes:
+      - cassandra_data:/var/lib/cassandra
+
   back1:
     image: 'back1'
     container_name: back1
@@ -40,3 +48,4 @@ services:
 
 volumes:
   redis_data:
+  cassandra_data:

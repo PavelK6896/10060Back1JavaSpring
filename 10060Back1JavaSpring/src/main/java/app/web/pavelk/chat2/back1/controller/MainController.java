@@ -2,7 +2,9 @@ package app.web.pavelk.chat2.back1.controller;
 
 
 import app.web.pavelk.chat2.back1.schema.Book;
+import app.web.pavelk.chat2.back1.schema.Book2;
 import app.web.pavelk.chat2.back1.schema.Chat2;
+import app.web.pavelk.chat2.back1.service.Book2Service;
 import app.web.pavelk.chat2.back1.service.BookService;
 import app.web.pavelk.chat2.back1.service.Chat2Service;
 import lombok.RequiredArgsConstructor;
@@ -17,17 +19,17 @@ public class MainController {
 
     private final BookService bookService;
     private final Chat2Service chat2Service;
+    private final Book2Service book2Service;
 
-    @GetMapping("/g")
+    @GetMapping("/g1")
     public List<Book> getBooks() {
         return bookService.getBooks();
     }
 
-    @GetMapping("/c")
-    public List<Book> CreateRandom() {
+    @GetMapping("/c1")
+    public List<Book> createRandom() {
         return bookService.create();
     }
-
 
     @GetMapping("/g2")
     public List<Chat2> getChats() {
@@ -39,5 +41,14 @@ public class MainController {
         return chat2Service.create();
     }
 
+    @GetMapping("/g3")
+    public List<Book2> getBooks2() {
+        return book2Service.getBooks();
+    }
+
+    @GetMapping("/c3")
+    public List<Book2> createBooks2() {
+        return book2Service.create();
+    }
 
 }
