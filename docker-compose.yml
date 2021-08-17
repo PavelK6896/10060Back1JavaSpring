@@ -46,6 +46,18 @@ services:
     volumes:
       - ./:/app
 
+  rabbitmq1:
+    image: "rabbitmq:3.9.3"
+    container_name: rabbitmq1
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+      - "61613:61613"
+    volumes:
+      - "./10060Back1JavaSpring/enabled_plugins:/etc/rabbitmq/enabled_plugins"
+
+
 volumes:
   redis_data:
   cassandra_data:
+  rabbit_data:

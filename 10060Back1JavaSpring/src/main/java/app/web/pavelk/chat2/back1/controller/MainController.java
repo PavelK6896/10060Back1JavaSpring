@@ -8,6 +8,7 @@ import app.web.pavelk.chat2.back1.service.Book2Service;
 import app.web.pavelk.chat2.back1.service.BookService;
 import app.web.pavelk.chat2.back1.service.Chat2Service;
 import lombok.RequiredArgsConstructor;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -50,5 +51,14 @@ public class MainController {
     public List<Book2> createBooks2() {
         return book2Service.create();
     }
+
+    private final SimpMessagingTemplate simpMessagingTemplate;
+
+    @GetMapping("/g4")
+    public String mX() {
+        simpMessagingTemplate.convertAndSend("/topic/", "message");
+        return "ok";
+    }
+
 
 }
