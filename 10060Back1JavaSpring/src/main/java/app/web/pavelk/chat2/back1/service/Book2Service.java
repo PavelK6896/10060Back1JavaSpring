@@ -1,8 +1,8 @@
 package app.web.pavelk.chat2.back1.service;
 
 
-import app.web.pavelk.chat2.back1.repo.Book2Repo;
-import app.web.pavelk.chat2.back1.schema.Book2;
+import app.web.pavelk.chat2.back1.db.cassandra.repo.Book2Repo;
+import app.web.pavelk.chat2.back1.db.cassandra.schema.Book2;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

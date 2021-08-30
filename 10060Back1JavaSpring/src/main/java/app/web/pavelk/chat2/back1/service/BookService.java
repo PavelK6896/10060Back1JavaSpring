@@ -1,8 +1,8 @@
 package app.web.pavelk.chat2.back1.service;
 
 
-import app.web.pavelk.chat2.back1.repo.BookRepo;
-import app.web.pavelk.chat2.back1.schema.Book;
+import app.web.pavelk.chat2.back1.db.mysql.repo.BookRepo;
+import app.web.pavelk.chat2.back1.db.mysql.schema.Book;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

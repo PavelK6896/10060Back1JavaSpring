@@ -1,4 +1,4 @@
-package app.web.pavelk.chat2.back1.config;
+package app.web.pavelk.chat2.back1.db.cassandra.config;
 
 import com.datastax.oss.driver.api.core.CqlSession;
 import org.springframework.context.annotation.Bean;

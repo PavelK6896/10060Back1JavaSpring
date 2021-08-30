@@ -1,4 +1,4 @@
-package app.web.pavelk.chat2.back1.config;
+package app.web.pavelk.chat2.back1.websocket.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;

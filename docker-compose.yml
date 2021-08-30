@@ -55,7 +55,7 @@ services:
       - "61613:61613"
     volumes:
       - "./10060Back1JavaSpring/enabled_plugins:/etc/rabbitmq/enabled_plugins"
-
+      - rabbit_data:/var/lib/rabbitmq/
 
 volumes:
   redis_data:

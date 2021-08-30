@@ -1,8 +1,8 @@
 package app.web.pavelk.chat2.back1.service;
 
 
-import app.web.pavelk.chat2.back1.repo.Chat2Repo;
-import app.web.pavelk.chat2.back1.schema.Chat2;
+import app.web.pavelk.chat2.back1.db.redis.repo.Chat2Repo;
+import app.web.pavelk.chat2.back1.db.redis.schema.Chat2;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

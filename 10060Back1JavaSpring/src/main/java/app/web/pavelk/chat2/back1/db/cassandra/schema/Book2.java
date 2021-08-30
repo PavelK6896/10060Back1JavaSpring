@@ -1,4 +1,4 @@
-package app.web.pavelk.chat2.back1.schema;
+package app.web.pavelk.chat2.back1.db.cassandra.schema;
 
 
 import lombok.AllArgsConstructor;

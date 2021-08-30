@@ -1,9 +1,9 @@
 package app.web.pavelk.chat2.back1.controller;
 
 
-import app.web.pavelk.chat2.back1.schema.Book;
-import app.web.pavelk.chat2.back1.schema.Book2;
-import app.web.pavelk.chat2.back1.schema.Chat2;
+import app.web.pavelk.chat2.back1.db.mysql.schema.Book;
+import app.web.pavelk.chat2.back1.db.cassandra.schema.Book2;
+import app.web.pavelk.chat2.back1.db.redis.schema.Chat2;
 import app.web.pavelk.chat2.back1.service.Book2Service;
 import app.web.pavelk.chat2.back1.service.BookService;
 import app.web.pavelk.chat2.back1.service.Chat2Service;

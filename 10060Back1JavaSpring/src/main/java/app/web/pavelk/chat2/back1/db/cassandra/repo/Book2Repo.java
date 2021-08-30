@@ -1,6 +1,6 @@
-package app.web.pavelk.chat2.back1.repo;
+package app.web.pavelk.chat2.back1.db.cassandra.repo;
 
-import app.web.pavelk.chat2.back1.schema.Book2;
+import app.web.pavelk.chat2.back1.db.cassandra.schema.Book2;
 import org.springframework.data.cassandra.repository.CassandraRepository;
 
 
