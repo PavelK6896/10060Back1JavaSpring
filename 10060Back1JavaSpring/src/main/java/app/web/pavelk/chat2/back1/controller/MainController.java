@@ -14,13 +14,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController("/main")
+@RestController
 @RequiredArgsConstructor
 public class MainController {
 
     private final BookService bookService;
     private final Chat2Service chat2Service;
     private final Book2Service book2Service;
+
+    @GetMapping("/")
+    public String getBooks333() {
+        return "ok";
+    }
 
     @GetMapping("/g1")
     public List<Book> getBooks() {

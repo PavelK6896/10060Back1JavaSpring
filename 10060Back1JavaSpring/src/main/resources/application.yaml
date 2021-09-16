@@ -20,7 +20,7 @@ spring:
       time-between-eviction-runs-millis: 3600000
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: none
     show-sql: true
     generate-ddl: false
     properties:

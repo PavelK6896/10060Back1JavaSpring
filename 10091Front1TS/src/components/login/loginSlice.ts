@@ -2,7 +2,7 @@ import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {AppThunk, RootState} from '../../app/store';
 import {post} from "../../utilities/api1";
 import {LOGIN} from "../../utilities/url1";
-import {LoginRequest} from "../../dto/dto";
+import {LoginRequestDto} from "../../dto/dto";
 
 export interface AuthState {
     token: string;
@@ -21,7 +21,7 @@ const initialState: AuthState = {
 // typically used to make async requests.
 export const loginRequestPost = createAsyncThunk(
     'login/post',
-    async (login: LoginRequest) => {
+    async (login: LoginRequestDto) => {
         const response = await post(LOGIN, login);
         if (response.data !== undefined) {
             setToken(response.data)
