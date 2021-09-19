@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @RestController
@@ -20,8 +21,10 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping(value = "/login")
-    public LoginResponseDto login(@RequestBody LoginRequestDto loginRequestDto) {
-        return authService.login(loginRequestDto);
+    public LoginResponseDto login(@Valid @RequestBody LoginRequestDto loginRequestDto, HttpServletRequest httpServletRequest) {
+        System.out.println(httpServletRequest.getHeader("sec-ch-ua"));
+        System.out.println(httpServletRequest.getHeader("Accept-Language"));
+        return authService.login(loginRequestDto, httpServletRequest);
     }
 
     @PostMapping("/logout")

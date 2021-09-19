@@ -13,7 +13,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = {"id"})
-@Table(schema = "client", name = "refresh")
+@Table(catalog="client", name = "refresh")
 public class Refresh {
 
     @Id
@@ -26,5 +26,19 @@ public class Refresh {
 
     @Column(name = "created")
     private LocalDateTime created;
+
+    @Column(name = "connected")
+    private LocalDateTime connected;
+
+    @Column(name = "remote_address")
+    private String remoteAddress;
+
+    @Column(name = "user_id")
+    private Long userId;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", updatable = false, insertable = false)
+    @ToString.Exclude
+    private User user;
 
 }

@@ -23,10 +23,10 @@ export const loginRequestPost = createAsyncThunk(
     'login/post',
     async (login: LoginRequestDto) => {
         const response = await post(LOGIN, login);
-        if (response.data !== undefined) {
-            setToken(response.data)
+        if (response !== undefined) {
+            setToken(response)
         }
-        return response.data;
+        return response;
     }
 );
 

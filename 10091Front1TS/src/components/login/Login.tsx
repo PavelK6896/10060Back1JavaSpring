@@ -9,6 +9,7 @@ export const Login = () => {
 
     const loginRequest = () => {
         dispatch(loginRequestPost(login))
+        console.log(login)
     }
 
     return (

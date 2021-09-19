@@ -4,6 +4,8 @@ import lombok.*;
 
 import javax.persistence.*;
 
+import java.util.List;
+
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Data
@@ -12,7 +14,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = {"id"})
-@Table(schema = "client", name = "users")
+@Table(catalog="client", name = "users")
 public class User {
 
     @Id
@@ -28,5 +30,8 @@ public class User {
 
     @Column(name = "enabled")
     private Boolean enabled;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Refresh> refreshes;
 
 }

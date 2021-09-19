@@ -24,7 +24,10 @@ create table IF NOT EXISTS client.refresh
 (
     id      bigint              not null auto_increment,
     created datetime(6),
+    connected datetime(6),
     token   varchar(255) unique not null,
+    remote_address   varchar(31),
+    user_id   bigint,
     primary key (id)
 ) engine = InnoDB;
 
