@@ -25,6 +25,11 @@ export const loginRequestPost = createAsyncThunk(
         const response = await post(LOGIN, login);
         if (response !== undefined) {
             setToken(response)
+            console.log(response)
+            localStorage.setItem("token", response.token)
+            localStorage.setItem("expiresAt", response.expiresAt)
+            localStorage.setItem("username", response.username)
+            localStorage.setItem("refresh", response.refresh)
         }
         return response;
     }
