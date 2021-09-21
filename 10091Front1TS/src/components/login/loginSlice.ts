@@ -1,8 +1,8 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {AppThunk, RootState} from '../../app/store';
 import {post} from "../../utilities/api1";
-import {LOGIN} from "../../utilities/url1";
-import {LoginRequestDto} from "../../dto/dto";
+import {LOGIN, LOGOUT} from "../../utilities/url1";
+import {LoginRequestDto, RefreshRequestDto} from "../../dto/dto";
 
 export interface AuthState {
     token: string;
@@ -34,6 +34,30 @@ export const loginRequestPost = createAsyncThunk(
         return response;
     }
 );
+
+export const logoutRequestPost = createAsyncThunk(
+    'logout/post',
+    async () => {
+
+        let username = localStorage.getItem("username");
+        let refresh = localStorage.getItem("refresh");
+        if (username != null && refresh != null) {
+            const logout: RefreshRequestDto = {
+                username: username,
+                refresh: refresh
+            }
+            const response = await post(LOGOUT, logout);
+            if (response !== undefined) {
+                localStorage.removeItem("token")
+                localStorage.removeItem("expiresAt")
+                localStorage.removeItem("username")
+                localStorage.removeItem("refresh")
+                return response;
+            }
+        }
+    }
+);
+
 
 export const loginSlice = createSlice({
     name: 'counter',

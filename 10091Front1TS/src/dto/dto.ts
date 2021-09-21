@@ -8,3 +8,9 @@ export interface LoginResponseDto{
     name: string
     token: string
 }
+
+
+export interface RefreshRequestDto{
+    refresh: string
+    username: string
+}
