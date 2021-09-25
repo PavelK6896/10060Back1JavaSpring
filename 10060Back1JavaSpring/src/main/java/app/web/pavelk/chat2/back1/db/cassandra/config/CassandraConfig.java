@@ -15,6 +15,17 @@ public class CassandraConfig {
                         "username text" +
                         ");"
         );
+        cqlSession.execute(
+                "create table IF NOT EXISTS messages (" +
+                        "username text," +
+                        "chatRoomId text," +
+                        "date timestamp," +
+                        "fromUser text," +
+                        "toUser text," +
+                        "text text," +
+                        "PRIMARY KEY ((username, chatRoomId), date)" +
+                        ");"
+        );
         return cqlSession;
     }
 }
