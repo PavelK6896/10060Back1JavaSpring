@@ -18,8 +18,11 @@ public class CassandraInstantMessageService {
     }
 
     public List<InstantMessage> findAll() {
-        List<InstantMessage> all = instantMessageRepository.findAll();
-        System.out.println(all.size());
-        return all;
+        return instantMessageRepository.findAll();
     }
+
+    public InstantMessage save(InstantMessage instantMessage) {
+        return instantMessageRepository.save(instantMessage);
+    }
+
 }

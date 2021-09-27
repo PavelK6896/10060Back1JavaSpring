@@ -31,7 +31,6 @@ public class InstantMessage {
     private String toUser;
     private String text;
 
-
     @Data
     @Builder
     @NoArgsConstructor
