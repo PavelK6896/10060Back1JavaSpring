@@ -4,12 +4,33 @@ import {Counter} from './features/counter/Counter';
 import './App.css';
 import {Login} from "./components/login/Login";
 import {Logout} from "./components/logout/Logout";
+import {Chat} from "./components/chat/Chat";
 
 function App() {
     return (
         <div className="App">
-            <Login/>
-            <Logout/>
+            <div style={{
+                display: "flex",
+                flexDirection: 'row',
+            }}>
+                <div
+                    style={{
+                        display: 'flex',
+                        flexDirection: "column",
+                        alignItems: 'flex-start',
+                        alignContent: 'flex-start',
+                        width: '20%'
+                    }}
+                >
+                    <div>
+                        <Login/>
+                        <Logout/>
+                    </div>
+                </div>
+                <div style={{}}>
+                    <Chat/>
+                </div>
+            </div>
             <header className="App-header">
 
                 <img src={logo} className="App-logo" alt="logo"/>
