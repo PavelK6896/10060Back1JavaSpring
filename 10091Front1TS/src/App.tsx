@@ -5,6 +5,7 @@ import './App.css';
 import {Login} from "./components/login/Login";
 import {Logout} from "./components/logout/Logout";
 import {Chat} from "./components/chat/Chat";
+import {Info} from "./components/info/Info";
 
 function App() {
     return (
@@ -29,6 +30,11 @@ function App() {
                 </div>
                 <div style={{}}>
                     <Chat/>
+                </div>
+                <div style={{
+                    marginLeft: '200px'
+                }}>
+                    <Info/>
                 </div>
             </div>
             <header className="App-header">

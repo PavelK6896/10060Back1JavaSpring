@@ -25,7 +25,7 @@ export const Chat = () => {
     }
 
     const key = (e: any) => {
-        if (e.charCode == 13) {
+        if (e.charCode === 13) {
             send()
         }
     }
