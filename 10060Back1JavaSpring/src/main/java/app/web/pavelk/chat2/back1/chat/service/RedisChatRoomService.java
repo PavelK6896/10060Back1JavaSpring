@@ -2,12 +2,16 @@ package app.web.pavelk.chat2.back1.chat.service;
 
 import app.web.pavelk.chat2.back1.chat.repository.ChatRoomRepository;
 import app.web.pavelk.chat2.back1.chat.schema.ChatRoom;
+import app.web.pavelk.chat2.back1.chat.schema.ChatRoomUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -25,5 +29,18 @@ public class RedisChatRoomService {
 
     public ChatRoom save(ChatRoom build) {
         return chatRoomRepository.save(build);
+    }
+
+    public List<ChatRoomUser> listChatRoomConnectedUsersOnSubscribe(SimpMessageHeaderAccessor headerAccessor) {
+        Map<String, Object> sessionAttributes = headerAccessor.getSessionAttributes();
+        if (sessionAttributes == null) {
+            return Collections.emptyList();
+        }
+        String chatRoomId = sessionAttributes.get("chatRoomId").toString();
+        return findById(chatRoomId).getConnectedUsers();
+    }
+
+    public void join(String chatRoomId) {
+
     }
 }
