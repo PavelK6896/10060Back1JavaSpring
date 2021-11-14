@@ -1,16 +1,12 @@
 package app.web.pavelk.chat2.back1.chat;
 
 import app.web.pavelk.chat2.back1.chat.schema.ChatRoom;
-import app.web.pavelk.chat2.back1.chat.schema.ChatRoomUser;
 import app.web.pavelk.chat2.back1.chat.schema.InstantMessage;
 import app.web.pavelk.chat2.back1.chat.service.CassandraInstantMessageService;
 import app.web.pavelk.chat2.back1.chat.service.RedisChatRoomService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
-import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -68,16 +64,5 @@ public class ChatRoomController {
     public void join(@PathVariable String chatRoomId) {
         redisChatRoomService.join(chatRoomId);
     }
-
-    @SubscribeMapping("/connected.users")
-    public List<ChatRoomUser> listChatRoomConnectedUsersOnSubscribe(@NotNull SimpMessageHeaderAccessor headerAccessor) {
-        return redisChatRoomService.listChatRoomConnectedUsersOnSubscribe(headerAccessor);
-    }
-
-    @SubscribeMapping("/old.messages")
-    public List<InstantMessage> listOldMessagesFromUserOnSubscribe(@NotNull SimpMessageHeaderAccessor headerAccessor) {
-        return cassandraInstantMessageService.listOldMessagesFromUserOnSubscribe(headerAccessor);
-    }
-
 
 }
