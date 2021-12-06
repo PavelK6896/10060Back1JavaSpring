@@ -3,7 +3,6 @@ package app.web.pavelk.chat2.back1.auth.schema;
 import lombok.*;
 
 import javax.persistence.*;
-
 import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -14,7 +13,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = {"id"})
-@Table(catalog="client", name = "users")
+@Table(catalog = "client", name = "users")
 public class User {
 
     @Id

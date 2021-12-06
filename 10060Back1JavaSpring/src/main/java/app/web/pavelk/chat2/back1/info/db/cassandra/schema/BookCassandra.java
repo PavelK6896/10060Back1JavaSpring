@@ -1,4 +1,4 @@
-package app.web.pavelk.chat2.back1.db.cassandra.schema;
+package app.web.pavelk.chat2.back1.info.db.cassandra.schema;
 
 
 import lombok.AllArgsConstructor;
@@ -14,12 +14,14 @@ import org.springframework.data.cassandra.core.mapping.Table;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table("book2")
-public class Book2 {
+@Table("book_cassandra")
+public class BookCassandra {
 
-    @PrimaryKeyColumn(name = "bookId", ordinal = 0, type = PrimaryKeyType.PARTITIONED)
+    @PrimaryKeyColumn(name = "book_id", ordinal = 0, type = PrimaryKeyType.PARTITIONED)
     private Long bookId;
 
     private String username;
+
+    private Integer number;
 
 }

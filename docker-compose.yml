@@ -1,7 +1,33 @@
 version: '3.9'
 
+volumes:
+  mysql_data_chat2:
+  redis_data_chat2:
+  cassandra_data_chat2:
+  rabbit_data_chat2:
+
 services:
+  cassandra1:
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+        reservations:
+          memory: 3G
+    image: "cassandra:3.11"
+    container_name: cassandra1
+    ports:
+      - "9042:9042"
+    volumes:
+      - cassandra_data_chat2:/var/lib/cassandra
+
   mysql1:
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 1G
     image: mysql:8.0
     container_name: masql8
     ports:
@@ -11,42 +37,29 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: chat2
     volumes:
-      - "/home/mysql1:/var/lib/mysql"
+      - mysql_data_chat2:/var/lib/mysql
 
   redis1:
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 1G
     image: "redis:alpine3.14"
     container_name: redis1
     ports:
       - "6379:6379"
     volumes:
-      - redis_data:/data
-
-  cassandra1:
-    image: "cassandra:3.11"
-    container_name: cassandra1
-    ports:
-      - "9042:9042"
-    volumes:
-      - cassandra_data:/var/lib/cassandra
-
-  back1:
-    image: 'back1'
-    container_name: back1
-    build:
-      context: 10060Back1JavaSpring
-      dockerfile: Dockerfile
-    environment:
-      - PORT=8080
-      - MYSQL_HOST=mysql1
-      - REDIS_HOST=redis1
-    ports:
-      - "8080:8080"
-    depends_on:
-      - mysql1
-    volumes:
-      - ./:/app
+      - redis_data_chat2:/data
 
   rabbitmq1:
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 1G
     image: "rabbitmq:3.9.3"
     container_name: rabbitmq1_chat2
     ports:
@@ -57,7 +70,21 @@ services:
       - "./10060Back1JavaSpring/enabled_plugins:/etc/rabbitmq/enabled_plugins"
       - rabbit_data_chat2:/var/lib/rabbitmq/
 
-volumes:
-  redis_data:
-  cassandra_data:
-  rabbit_data_chat2:
+
+
+#  back1:
+#    image: 'back1'
+#    container_name: back1
+#    build:
+#      context: 10060Back1JavaSpring
+#      dockerfile: Dockerfile
+#    environment:
+#      - PORT=8080
+#      - MYSQL_HOST=mysql1
+#      - REDIS_HOST=redis1
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - mysql1
+#    volumes:
+#      - ./:/app

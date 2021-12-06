@@ -1,18 +1,23 @@
-package app.web.pavelk.chat2.back1.db.cassandra.config;
+package app.web.pavelk.chat2.back1.info.db.cassandra.config;
 
 import com.datastax.oss.driver.api.core.CqlSession;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Repository;
 
 @Configuration
+@Repository
 public class CassandraConfig {
     @Bean
     public CqlSession session() {
-        CqlSession cqlSession = CqlSession.builder().withKeyspace("test3").build();
+        //create keyspace chat2 with replication = {'class': 'SimpleStrategy', 'replication_factor': 1};
+
+        CqlSession cqlSession = CqlSession.builder().withKeyspace("chat2").build();
         cqlSession.execute(
-                "create table IF NOT EXISTS book2 (" +
-                        "bookId bigint primary key," +
-                        "username text" +
+                "create table IF NOT EXISTS book_cassandra (" +
+                        "book_id bigint primary key," +
+                        "username text," +
+                        "number int" +
                         ");"
         );
         cqlSession.execute(

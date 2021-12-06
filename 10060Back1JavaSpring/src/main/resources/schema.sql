@@ -1,13 +1,15 @@
 CREATE SCHEMA IF NOT EXISTS client;
 
-create table IF NOT EXISTS chat2.book
+create table IF NOT EXISTS chat2.book_my_sql
 (
-    id bigint not null auto_increment,
-    b1 bigint,
+    id     bigint not null auto_increment,
+    number bigint,
+    name   text,
     primary key (id)
 ) engine = InnoDB;
 
-REPLACE INTO chat2.book (id, b1) VALUES (2, 2);
+REPLACE INTO chat2.book_my_sql (id, number, name)
+VALUES (2, 1323, 'name');
 
 create table IF NOT EXISTS client.users
 (
@@ -22,12 +24,12 @@ create table IF NOT EXISTS client.users
 
 create table IF NOT EXISTS client.refresh
 (
-    id      bigint              not null auto_increment,
-    created datetime(6),
-    connected datetime(6),
-    token   varchar(255) unique not null,
-    remote_address   varchar(31),
-    user_id   bigint,
+    id             bigint              not null auto_increment,
+    created        datetime(6),
+    connected      datetime(6),
+    token          varchar(255) unique not null,
+    remote_address varchar(31),
+    user_id        bigint,
     primary key (id)
 ) engine = InnoDB;
 

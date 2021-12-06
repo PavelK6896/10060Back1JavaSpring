@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Back1 {
+public class Back1Chat2 {
 
-	public static void main(String[] args) {
-		SpringApplication.run(Back1.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(Back1Chat2.class, args);
+    }
 
 }

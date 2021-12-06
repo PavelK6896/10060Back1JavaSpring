@@ -4,15 +4,15 @@ server:
     context-path:
 
 spring:
-#  config:
-#    activate:
-#      on-profile: dev
+  #  config:
+  #    activate:
+  #      on-profile: dev
   application:
     name: back1
   datasource:
     #    driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/chat2
-#    ?useSSL=false&useUnicode=yes&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+    #    ?useSSL=false&useUnicode=yes&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
     username: root
     password: root
     dbcp2:
@@ -43,11 +43,11 @@ spring:
   data:
     cassandra:
       contact-points: localhost
-#      local-datacenter: datacenter1
-#      keyspace-name: default
+      local-datacenter: datacenter1
+      #      keyspace-name: default
       username: cassandra
       password: cassandra
-      schema-action:  none
+      schema-action: none
       port: 9042
     redis:
       repositories:
@@ -59,3 +59,13 @@ spring:
       data-locations: classpath:data.sql
 
 
+logging:
+  level:
+    org.springframework.data.cassandra.core.cql.CqlTemplate: DEBUG
+    org.hibernate.SQL: DEBUG
+    root: info
+
+springdoc:
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui

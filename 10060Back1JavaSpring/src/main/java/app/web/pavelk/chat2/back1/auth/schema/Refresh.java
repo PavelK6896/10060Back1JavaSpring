@@ -13,7 +13,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = {"id"})
-@Table(catalog="client", name = "refresh")
+@Table(catalog = "client", name = "refresh")
 public class Refresh {
 
     @Id
