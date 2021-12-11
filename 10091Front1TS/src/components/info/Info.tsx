@@ -8,7 +8,7 @@ let listInit = [
 ]
 
 export const Info = () => {
-    const [list, setList] = useState(listInit);
+    const [list] = useState(listInit);
 
 
     return (
@@ -23,7 +23,7 @@ export const Info = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'flex-start',
-                backgroundColor: '#ffffff',
+                backgroundColor: '#414141',
                 width: '400px',
                 height: '400px'
             }}>

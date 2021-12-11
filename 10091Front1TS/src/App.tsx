@@ -1,88 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
-import {Counter} from './features/counter/Counter';
 import './App.css';
-import {Login} from "./components/login/Login";
-import {Logout} from "./components/logout/Logout";
-import {Chat} from "./components/chat/Chat";
-import {Info} from "./components/info/Info";
+import {Route, Routes} from "react-router-dom";
+import {Home} from "./pages/Home";
+import {About} from "./pages/About";
+import {Main} from "./pages/Main";
+import {Help} from "./pages/Help";
+import {PageOne} from "./pages/PageOne";
+import {PageTwo} from "./pages/PageTwo";
+import {ReduxInfo} from "./pages/ReduxInfo";
+import {Chat} from "./pages/Chat";
+import {Nav} from "./components/nav/Nav";
+import {Statistics} from "./pages/Statistics";
+import {Info} from "./pages/Info";
 
 function App() {
     return (
         <div className="App">
-            <div style={{
-                display: "flex",
-                flexDirection: 'row',
-            }}>
-                <div
-                    style={{
-                        display: 'flex',
-                        flexDirection: "column",
-                        alignItems: 'flex-start',
-                        alignContent: 'flex-start',
-                        width: '20%'
-                    }}
-                >
-                    <div>
-                        <Login/>
-                        <Logout/>
-                    </div>
-                </div>
-                <div style={{}}>
-                    <Chat/>
-                </div>
-                <div style={{
-                    marginLeft: '200px'
-                }}>
-                    <Info/>
-                </div>
+            <Nav/>
+            <div className="Content">
+                <Routes>
+                    <Route path="/" element={<Home/>}/>
+                    <Route path="/home" element={<Home/>}/>
+                    <Route path="about" element={<About/>}/>
+                    <Route path="main" element={<Main/>}/>
+                    <Route path="help" element={<Help/>}/>
+                    <Route path="chat" element={<Chat/>}/>
+                    <Route path="info" element={<Info/>}/>
+                    <Route path="statistics" element={<Statistics/>}/>
+                    <Route path="redux-info" element={<ReduxInfo/>}/>
+                    <Route path="page/one" element={<PageOne/>}/>
+                    <Route path="page/two" element={<PageTwo/>}/>
+                </Routes>
             </div>
-            <header className="App-header">
-
-                <img src={logo} className="App-logo" alt="logo"/>
-                <Counter/>
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <span>
-          <span>Learn </span>
-          <a
-              className="App-link"
-              href="https://reactjs.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-              className="App-link"
-              href="https://redux.js.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-              className="App-link"
-              href="https://redux-toolkit.js.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-              className="App-link"
-              href="https://react-redux.js.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-            </header>
         </div>
     );
 }

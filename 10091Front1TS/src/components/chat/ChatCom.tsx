@@ -10,7 +10,7 @@ let listInit = [
     {id: 6, text: '6 i'},
 ]
 
-export const Chat = () => {
+export const ChatCom = () => {
 
     const [list, setList] = useState(listInit);
     const [input, setInput] = useState('');
@@ -42,7 +42,7 @@ export const Chat = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'flex-start',
-                backgroundColor: '#a19d9d',
+                backgroundColor: '#525252',
                 width: '400px',
                 height: '400px'
             }}>

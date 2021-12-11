@@ -1,16 +1,15 @@
-
-export interface LoginRequestDto{
+export interface LoginRequestDto {
     username: string
     password: string
 }
 
-export interface LoginResponseDto{
+export interface LoginResponseDto {
     name: string
     token: string
 }
 
 
-export interface RefreshRequestDto{
+export interface RefreshRequestDto {
     refresh: string
     username: string
 }
