@@ -13,17 +13,18 @@ public class WebSocketConfigSpringSession implements WebSocketMessageBrokerConfi
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/ws").withSockJS();
+        registry.addEndpoint("/ws").setAllowedOriginPatterns("*").withSockJS();
     }
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
-        registry.enableStompBrokerRelay("/queue/", "/topic/")
+
+        registry.enableStompBrokerRelay("/queue/", "/topic")
                 .setUserDestinationBroadcast("/topic/user.1u")
                 .setUserRegistryBroadcast("/topic/registry.1b")
                 .setRelayHost("localhost")
                 .setRelayPort(61613);
 
-        registry.setApplicationDestinationPrefixes("/app");
+        registry.setApplicationDestinationPrefixes("/app", "/chatroom");
     }
 }

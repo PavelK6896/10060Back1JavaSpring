@@ -71,7 +71,7 @@ public class InfoController {
 
     @GetMapping("/send-topic-message")
     public String sendTopicMessage() {
-        simpMessagingTemplate.convertAndSend("/topic/", "message");
+        simpMessagingTemplate.convertAndSend("/topic/message", "message + 234f423");
         return "sendTopicMessage";
     }
 

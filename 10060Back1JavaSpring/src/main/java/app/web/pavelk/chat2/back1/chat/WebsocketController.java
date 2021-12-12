@@ -6,6 +6,7 @@ import app.web.pavelk.chat2.back1.chat.service.CassandraInstantMessageService;
 import app.web.pavelk.chat2.back1.chat.service.RedisChatRoomService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,15 +24,32 @@ public class WebsocketController {
 
     @SubscribeMapping("/connected.users")
     public List<ChatRoomUser> listChatRoomConnectedUsersOnSubscribe(@NotNull SimpMessageHeaderAccessor headerAccessor) {
-        log.info("SubscribeMapping/connected.users");
+        log.info("Sub scribeMapping/connected.users");
         return redisChatRoomService.listChatRoomConnectedUsersOnSubscribe(headerAccessor);
     }
 
 
     @SubscribeMapping("/old.messages")
     public List<InstantMessage> listOldMessagesFromUserOnSubscribe(@NotNull SimpMessageHeaderAccessor headerAccessor) {
-        log.info("SubscribeMapping/old.messages");
+        log.info("Sub scribeMapping/old.messages");
         return cassandraInstantMessageService.listOldMessagesFromUserOnSubscribe(headerAccessor);
+    }
+
+
+    @SubscribeMapping("/message")
+    public void subMessage(@NotNull SimpMessageHeaderAccessor headerAccessor) {
+        log.info("Sub Message " + headerAccessor.toString());
+    }
+
+
+    @MessageMapping("/chat")
+    public void messageChat(String s) {
+        log.info("messageChat " + s);
+    }
+
+    @MessageMapping("/message")
+    public void messageMessage(String s) {
+        log.info("messageMessage " + s);
     }
 
 

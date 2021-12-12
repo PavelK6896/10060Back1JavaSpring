@@ -15,15 +15,13 @@ public class WebSocketEvents {
     @EventListener
     public void handleSessionConnected(SessionConnectEvent event) {
         SimpMessageHeaderAccessor headers = SimpMessageHeaderAccessor.wrap(event.getMessage());
-        log.info("handleSessionConnected");
-        log.info(headers.getSessionAttributes().toString());
+        log.info("Connected " + event.toString() + "\n" + headers.getSessionAttributes());
     }
 
     @EventListener
     public void handleSessionDisconnect(SessionDisconnectEvent event) {
         SimpMessageHeaderAccessor headers = SimpMessageHeaderAccessor.wrap(event.getMessage());
-        log.info("handleSessionDisconnect");
-        log.info(headers.getSessionAttributes().toString());
+        log.info("Disconnect " + event.toString() + "\n" + headers.getSessionAttributes());
     }
 
 }

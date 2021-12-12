@@ -4,6 +4,7 @@ import app.web.pavelk.chat2.back1.chat.repository.InstantMessageRepository;
 import app.web.pavelk.chat2.back1.chat.schema.InstantMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +35,11 @@ public class CassandraInstantMessageService {
         if (sessionAttributes == null) {
             return Collections.emptyList();
         }
-        String chatRoomId = sessionAttributes.get("chatRoomId").toString();
+        String chatRoomId = sessionAttributes.getOrDefault("chatRoomId", "def").toString();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null) {
+            return Collections.emptyList();
+        }
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
         return instantMessageRepository.findInstantMessagesByUsernameAndChatRoomId(name, chatRoomId);
     }
