@@ -4,6 +4,7 @@ import app.web.pavelk.chat2.back1.chat.schema.ChatRoom;
 import app.web.pavelk.chat2.back1.chat.schema.InstantMessage;
 import app.web.pavelk.chat2.back1.chat.service.CassandraInstantMessageService;
 import app.web.pavelk.chat2.back1.chat.service.RedisChatRoomService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,23 +42,22 @@ public class ChatRoomController {
                 .build());
     }
 
-    @GetMapping("/r/findAll")
-    public List<ChatRoom> r() {
+    @GetMapping("/rooms")
+    @Operation(summary = "findAllChatRoom")
+    public List<ChatRoom> findAllChatRoom() {
         return redisChatRoomService.findAll();
     }
 
-    @GetMapping("/r/findById")
-    public ChatRoom findById(@RequestParam("c") String chatRoomId) {
+    @GetMapping("/room/id")
+    @Operation(summary = "findByIdChatRoom")
+    public ChatRoom findById(@RequestParam("id") String chatRoomId) {
         return redisChatRoomService.findById(chatRoomId);
     }
 
-    @GetMapping("/r/save")
-    public ChatRoom saveR() {
-        return redisChatRoomService.save(ChatRoom.builder()
-                .id(String.valueOf(ThreadLocalRandom.current().nextInt(10, 20)))
-                .description("dd")
-                .name("nn")
-                .build());
+    @PostMapping("/room")
+    @Operation(summary = "createChatRoom")
+    public ChatRoom createChatRoom(@RequestBody ChatRoom chatRoom) {
+        return redisChatRoomService.save(chatRoom);
     }
 
     @GetMapping("/chatroom/{chatRoomId}")

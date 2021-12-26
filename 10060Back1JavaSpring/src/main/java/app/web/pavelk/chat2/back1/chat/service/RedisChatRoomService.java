@@ -13,6 +13,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Slf4j
 @Service
@@ -29,8 +30,8 @@ public class RedisChatRoomService {
         return (List<ChatRoom>) chatRoomRepository.findAll();
     }
 
-    public ChatRoom save(ChatRoom build) {
-        return chatRoomRepository.save(build);
+    public ChatRoom save(ChatRoom chatRoom) {
+        return chatRoomRepository.save(chatRoom);
     }
 
     public List<ChatRoomUser> listChatRoomConnectedUsersOnSubscribe(SimpMessageHeaderAccessor headerAccessor) {
@@ -38,7 +39,7 @@ public class RedisChatRoomService {
         if (sessionAttributes == null) {
             return Collections.emptyList();
         }
-        String chatRoomId = sessionAttributes.get("chatRoomId").toString();
+        String chatRoomId = Objects.requireNonNullElse(sessionAttributes.get("chatRoomId"), "101").toString();
         return findById(chatRoomId).getConnectedUsers();
     }
 

@@ -1,6 +1,7 @@
 package app.web.pavelk.chat2.back1.chat.schema;
 
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,7 +20,9 @@ import java.util.List;
 public class ChatRoom {
 
     @Id
+    @Schema(description = "id", example = "101")
     private String id;
+    @Schema(description = "name", example = "one")
     private String name;
     private String description;
     private List<ChatRoomUser> connectedUsers = new ArrayList<>();
